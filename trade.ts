@@ -1,7 +1,15 @@
 import { KiteConnect } from "kiteconnect";
+import dotenv from "dotenv";
 
-const apiKey = "5s3119ar39i7dtzz";
-let access_token = "LNPyCtSo3cFfjX6Cx6qFXiccofpflZQT";
+dotenv.config();
+
+const apiKey = process.env.API_KEY;
+let access_token = process.env.ACCESS_TOKEN;
+
+if (!apiKey || !access_token) {
+  throw new Error("API_KEY and API_SECRET environment variables are required");
+}
+
 const kc = new KiteConnect({ api_key: apiKey });
 kc.setAccessToken(access_token);
 
